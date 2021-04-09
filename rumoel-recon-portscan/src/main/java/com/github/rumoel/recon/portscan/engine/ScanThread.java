@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 
+import com.github.rumoel.common.network.info.Protocol;
 import com.github.rumoel.libs.recon.info.HostPort;
 import com.github.rumoel.recon.portscan.header.PortScanHeader;
 import com.github.rumoel.recon.portscan.spring.PortscanSpringClientService;
@@ -44,8 +45,7 @@ public class ScanThread extends Thread implements Runnable {
 			}
 
 			if (!IpUtils.ipInPrivateRange(getHOST())) {
-				HostPort result = new HostPort(System.currentTimeMillis() / 1000, getHOST(), getPORT(),
-						HostPort.protocol.TCP);
+				HostPort result = new HostPort(System.currentTimeMillis() / 1000, getHOST(), getPORT(), Protocol.TCP);
 				PortscanSpringClientService.sendResult(result);
 			}
 		}
